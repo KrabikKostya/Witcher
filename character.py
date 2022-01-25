@@ -40,3 +40,5 @@ class People(Character):
         return "walk"
 
 
+# smth new
+
