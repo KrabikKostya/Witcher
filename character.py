@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 
 
 class Field:
@@ -6,14 +6,13 @@ class Field:
     rangedRow = []
 
 
-class Character():
-    def __init__(self, skills, name, inventory, hp, attackDMG, spawn):
-        self.skills = []
-        self.name = ""
-        self.inventory = []
-        self.hp = 0
-        self.attackDMG = 0
-        self.spawn = ""
+class Character(ABC):
+    def __init__(self, name, hp, weapon, attackDMG, spawn):
+        self.name = name  #attckDMG_crit,
+        self.hp = hp
+        self.weapon = weapon
+        self.attackDMG = attackDMG
+        self.spawn = spawn
 
     @abstractmethod
     def move():
@@ -41,29 +40,36 @@ class Dworf(Character):
 
 
 class Human(Character):
-    def __init__(self, skills, name, inventory, hp, attackDMG, spawn, maxAge, origin, fertility, xenofobia):
-        super().__init__(skills, name, inventory, hp, attackDMG, spawn)
-        self.maxAge = 80
-        self.origin = "Human"
-        self.fertility = True
-        self.xenophobia = True
+    def __init__(self, name, hp,  weapon, attackDMG, spawn, maxAge, origin, fertility, xenofobia):
+        super().__init__(name, hp, weapon, attackDMG, spawn)
+        self.maxAge = maxAge
+        self.origin = origin # what do we hae to write in here?
+        self.fertility = fertility
+        self.xenophobia = xenofobia
 
-    def walk():
-        return "walk"
+    def move():
+        pass
+    def attack():
+        pass
+    def desision():
+        pass
+    def look():
+        pass
 
 
 class Witcher(Human):
-    def __init__(self, skills, name, inventory, hp, attackDMG, spawn, maxAge, origin, fertility, xenofobia):
-        super().__init__(skills, name, inventory, hp, attackDMG, spawn, maxAge, origin, fertility, xenofobia)
-        self.hp = 200
+    def __init__(self, name, hp, weapon, attackDMG, spawn, maxAge, origin, fertility, xenofobia):
+        super().__init__(name, hp, weapon, attackDMG, spawn, maxAge, origin, fertility, xenofobia)
+        hp = 20
 
 
 class Wizard(Human):
     pass
 
+# geralt = Witcher('Geralt', )
+geralt = Witcher('Geralt', 200, 'sword', 30, [3, 4], 250, 'mutant', False, True)
+print(geralt)
 
-geralt = Witcher()
-print(geralt.hp)
 
 # Gervant geralt
 # Excel eskel
